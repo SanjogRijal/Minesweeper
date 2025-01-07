@@ -1,40 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+Here’s a well-structured `README.md` file for your Minesweeper app:
 
-## Getting Started
+---
 
-First, run the development server:
+# **Minesweeper App**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A modern Minesweeper game built with **ReactJS**, featuring customizable difficulty levels, a sleek user interface, and interactive gameplay.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## **Table of Contents**
+1. [Features](#features)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Game Rules](#game-rules)
+5. [Screenshots](#screenshots)
+6. [Contributing](#contributing)
+7. [License](#license)
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+---
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## **Features**
+- Dynamic game board generation based on difficulty:
+  - Easy: 8x8 grid with 10 mines.
+  - Medium: 16x16 grid with 40 mines.
+  - Hard: 24x24 grid with 99 mines.
+- Interactive gameplay:
+  - Left-click to reveal cells.
+  - Right-click to flag/unflag cells.
+- Recursive reveal for empty cells.
+- Win and Game Over states.
+- Responsive design.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## **Installation**
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/minesweeper-app.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd minesweeper-app
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## **Usage**
 
-## Deploy on Vercel
+1. Select the difficulty level from the dropdown menu.
+2. Click **Start Game** to generate the board.
+3. Interact with the board:
+   - **Left-click**: Reveal the cell.
+   - **Right-click**: Flag or unflag a cell.
+4. Win by revealing all non-mine cells or flagging all mines correctly.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## **Game Rules**
+
+- If you click a mine, the game ends (Game Over).
+- Empty cells automatically reveal neighboring empty cells.
+- The numbers on cells indicate how many neighboring mines are present.
+- Flag cells you suspect contain mines.
+- You win when all non-mine cells are revealed or all mines are flagged.
+
+---
+
+## **License**
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## **Acknowledgments**
+- Inspired by the classic Minesweeper game.
+- Built using ReactJS.
