@@ -73,12 +73,6 @@ A modern Minesweeper game built with **ReactJS**, featuring customizable difficu
 
 ---
 
-## **License**
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 ## **Acknowledgments**
 - Inspired by the classic Minesweeper game.
 - Built using ReactJS.
