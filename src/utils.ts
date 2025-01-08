@@ -1,4 +1,4 @@
-import { Cell } from "./components/types";
+import { Cell } from "@/components/types";
 
 export const countAdjacentMines = (
   board: Cell[][],
