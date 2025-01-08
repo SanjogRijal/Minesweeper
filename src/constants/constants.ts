@@ -8,3 +8,5 @@ export const START_GAME_BUTTON_VALUE = "Start Game";
 export const GAME_OVER_MESSAGE = "GAME OVER! TRY AGAIN.";
 export const WIN_MESSAGE = "Congratulation! You Won.";
 export const DIFFICULTY_CHOICE = "Choose Difficulty";
+export const FOOTER_TEXT =
+  "Crafted with passion and love by Sanjog Rijal. Stay curious, keep coding, and keep evolving! ❤️";
