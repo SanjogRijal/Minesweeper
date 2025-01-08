@@ -5,3 +5,5 @@ export const DIFFICULTY = {
   Hard: { rows: 24, cols: 24, mines: 99 },
 };
 export const START_GAME_BUTTON_VALUE = "Start Game";
+export const GAME_OVER_MESSAGE = "GAME OVER! TRY AGAIN.";
+export const WIN_MESSAGE = "Congratulation! You Won.";

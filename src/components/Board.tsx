@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { Cell } from "./types";
+import { revealCell } from "@/utils";
+import { GAME_OVER_MESSAGE, WIN_MESSAGE } from "@/constants/constants";
 
 interface IProps {
   board: any[];
-  setBoard: SetStateAction<any>;
+  setBoard: Dispatch<SetStateAction<any[]>>;
   gameOver: boolean;
-  setGameOver: SetStateAction<any>;
+  setGameOver: Dispatch<SetStateAction<boolean>>;
+  win: boolean;
+  setWin: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function BoardComponent({
@@ -13,6 +18,8 @@ export default function BoardComponent({
   setBoard,
   gameOver,
   setGameOver,
+  win,
+  setWin,
 }: IProps) {
   const handleRightClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -27,44 +34,57 @@ export default function BoardComponent({
     setBoard(newBoard);
   };
 
-  const handleCellClick = (row: number, col: string | number) => {
-    if (gameOver || (board[row][col] as any).revealed) return;
+  function handleCellClick(row: number, col: number) {
+    if (gameOver || win || board[row][col].revealed || board[row][col].flagged)
+      return;
 
     const newBoard = [...board];
-    (newBoard[row][col] as any).revealed = true;
-
-    if ((newBoard[row][col] as any).mine) {
+    if (newBoard[row][col].mine) {
+      board[row][col].revealed = true;
       setGameOver(true);
-      alert("Game Over!");
+    } else {
+      revealCell(newBoard, row, col);
+      if (checkWin(newBoard)) {
+        setWin(true);
+        setGameOver(true);
+      }
     }
     setBoard(newBoard);
+  }
+
+  const checkWin = (board: Cell[][]): boolean => {
+    return board.every((row) =>
+      row.every(
+        (cell) => (cell.mine && cell.flagged) || (!cell.mine && cell.revealed)
+      )
+    );
   };
   return (
-    <div className="board">
-      {board.map((row: any, rowIndex) => (
-        <div key={rowIndex} className="row">
-          {row.map(
-            (
-              cell: { revealed: any; flagged: any; mine: any },
-              colIndex: React.Key | null | undefined
-            ) => (
+    <>
+      {gameOver && <div className="game-over">{GAME_OVER_MESSAGE}</div>}
+      {win && <div className="win"> {WIN_MESSAGE}</div>}
+      <div className="board">
+        {board.map((row, rowIndex) => (
+          <div key={rowIndex} className="row">
+            {row.map((cell: Cell, colIndex: number) => (
               <div
                 key={colIndex}
                 className={`cell ${cell.revealed ? "revealed" : ""} ${
                   cell.flagged ? "flagged" : ""
                 }`}
-                onClick={() => handleCellClick(rowIndex, colIndex as any)}
-                onContextMenu={(e) =>
-                  handleRightClick(e, rowIndex, colIndex as any)
-                }
+                onClick={() => handleCellClick(rowIndex, colIndex)}
+                onContextMenu={(e) => handleRightClick(e, rowIndex, colIndex)}
               >
                 {cell.revealed && cell.mine ? "💣" : ""}
+                {cell.revealed && !cell.mine && cell.adjacentMines > 0
+                  ? cell.adjacentMines
+                  : ""}
                 {cell.flagged && !cell.revealed ? "🚩" : ""}
               </div>
-            )
-          )}
-        </div>
-      ))}
-    </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

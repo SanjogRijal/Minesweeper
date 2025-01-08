@@ -9,6 +9,7 @@ function Minesweeper() {
   const [difficulty, setDifficulty] = useState<string>("Easy");
   const [board, setBoard] = useState<any[]>([]);
   const [gameOver, setGameOver] = useState(false);
+  const [win, setWin] = useState(false);
   return (
     <div className="Minesweeper">
       <HeaderComponent />
@@ -26,6 +27,8 @@ function Minesweeper() {
         />
       </div>
       <BoardComponent
+        win={win}
+        setWin={setWin}
         board={board}
         setBoard={setBoard}
         gameOver={gameOver}
