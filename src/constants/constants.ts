@@ -7,3 +7,4 @@ export const DIFFICULTY = {
 export const START_GAME_BUTTON_VALUE = "Start Game";
 export const GAME_OVER_MESSAGE = "GAME OVER! TRY AGAIN.";
 export const WIN_MESSAGE = "Congratulation! You Won.";
+export const DIFFICULTY_CHOICE = "Choose Difficulty";

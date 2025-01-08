@@ -10,30 +10,39 @@ function Minesweeper() {
   const [board, setBoard] = useState<any[]>([]);
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
+  const commonStyle: any = {
+    position: "relative",
+    top: "20px",
+  };
   return (
     <div className="Minesweeper">
-      <HeaderComponent />
       <div>
+        <HeaderComponent />
+      </div>
+      <div style={commonStyle}>
         <DifficultyComponent
           difficulty={difficulty}
           setDifficulty={setDifficulty}
         />
       </div>
-      <div>
+      <div style={{ ...commonStyle, top: "25px" }}>
         <StartGameButton
           setGameOver={setGameOver}
           difficulty={difficulty}
           setBoard={setBoard}
         />
       </div>
-      <BoardComponent
-        win={win}
-        setWin={setWin}
-        board={board}
-        setBoard={setBoard}
-        gameOver={gameOver}
-        setGameOver={setGameOver}
-      />
+      <div style={commonStyle}>
+        <BoardComponent
+          difficulty={difficulty}
+          win={win}
+          setWin={setWin}
+          board={board}
+          setBoard={setBoard}
+          gameOver={gameOver}
+          setGameOver={setGameOver}
+        />
+      </div>
     </div>
   );
 }

@@ -2,9 +2,11 @@
 import { Dispatch, SetStateAction } from "react";
 import { Cell } from "./types";
 import { revealCell } from "@/utils";
-import { GAME_OVER_MESSAGE, WIN_MESSAGE } from "@/constants/constants";
+import { WIN_MESSAGE } from "@/constants/constants";
+import GameOver from "./Gameover";
 
 interface IProps {
+  difficulty: string;
   board: any[];
   setBoard: Dispatch<SetStateAction<any[]>>;
   gameOver: boolean;
@@ -14,6 +16,7 @@ interface IProps {
 }
 
 export default function BoardComponent({
+  difficulty,
   board,
   setBoard,
   gameOver,
@@ -61,7 +64,13 @@ export default function BoardComponent({
   };
   return (
     <>
-      {gameOver && <div className="game-over">{GAME_OVER_MESSAGE}</div>}
+      {gameOver && (
+        <GameOver
+          difficulty={difficulty}
+          setBoard={setBoard}
+          setGameOver={setGameOver}
+        />
+      )}
       {win && <div className="win"> {WIN_MESSAGE}</div>}
       <div className="board">
         {board.map((row, rowIndex) => (

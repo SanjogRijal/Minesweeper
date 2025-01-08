@@ -19,5 +19,9 @@ export default function StartGameButton({
     setBoard(newBoard as any);
     setGameOver(false);
   };
-  return <button onClick={startGame}>Start Game</button>;
+  return (
+    <button className="start-game-btn" onClick={startGame}>
+      Start Game
+    </button>
+  );
 }
